@@ -1,4 +1,4 @@
-import React, {useState}  from 'react';
+import React, { useState } from 'react';
 
 import './ExpenseForm.css'
 
@@ -6,7 +6,9 @@ const ExpenseForm = (props) => {
 
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
-    const [enteredDate, setEnteredDate] = useState('');    
+    const [enteredDate, setEnteredDate] = useState('');
+
+    const [newFormValue, setNewFormValue] = useState('');
 
     const titleChangeHandler = (event) => {
         setEnteredTitle(event.target.value);
@@ -19,7 +21,11 @@ const ExpenseForm = (props) => {
     const dateChangeHandler = (event) => {
         setEnteredDate(event.target.value);
     }
-    
+
+    const callNewExpenseFormHandler = ()=> {
+        setNewFormValue(' ');
+    }
+
     const submitHandler = (event) => {
 
         event.preventDefault();
@@ -34,7 +40,18 @@ const ExpenseForm = (props) => {
 
         setEnteredTitle('');
         setEnteredAmount('');
-        setEnteredDate('');        
+        setEnteredDate('');
+        setNewFormValue('');
+    }
+
+    if (newFormValue === '') {
+        return (
+            <div>
+                <div >
+                    <button onClick={callNewExpenseFormHandler}>Add New Expense</button>
+                </div>
+            </div>
+        );
     }
 
     return (
